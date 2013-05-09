@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+
+# PODNAME: plugauthlite
+# ABSTRACT: Minimal PlugAuth server
+# VERSION
+
+use Mojolicious::Lite;
+
+plugin 'plug_auth_lite';
+
+app->start;
