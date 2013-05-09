@@ -64,6 +64,8 @@ Return 200 ok
 
 =cut
 
+use strict;
+use warnings;
 use Mojolicious::Lite;
 
 my $validate_pw;

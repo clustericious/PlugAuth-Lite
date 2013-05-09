@@ -1,1 +1,19 @@
---- {}
+---
+pod_spelling_system:
+  stopwords:
+    - API
+    - Clustericious
+    - DBI
+    - LDAP
+    - PlugAuth
+    - PlugAuthLite
+    - auth
+    - authz
+    - PlugAuth.conf
+    - ok
+    - plugins
+    - url
+
+pod_coverage:
+  private: []
+

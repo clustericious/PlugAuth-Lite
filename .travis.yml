@@ -1,6 +1,13 @@
 language: perl
 install:
   - cpanm -n Mojolicious
+  - cpanm -n Test::Strict
+  - cpanm -n Test::Spelling
+  - cpanm -n Test::Pod::Spelling::CommonMistakes
+  - cpanm -n Test::NoTabs
+  - cpanm -n Test::Fixme
+  - cpanm -n Test::EOL
+  - cpanm -n Test::CPAN::Changes
 script: HARNESS_IS_VERBOSE=1 prove -lvr t xt
 perl:
   - "5.16"

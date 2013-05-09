@@ -31,12 +31,12 @@ use v5.10;
 
 This plugin provides a very minimal but customizable L<PlugAuth> server which can
 be included with your L<Mojolicious> application for L<Clustericious> applications
-to authenticate against.  If you do not need specalized plugins for LDAP or DBI,
-and if you do not need the user/group/resource mangement provided by a the full
+to authenticate against.  If you do not need specialized plugins for LDAP or DBI,
+and if you do not need the user/group/resource management provided by a the full
 featured L<PlugAuth> server then this plugin may be for you.
 
 The script L<plugauthlite> included with this distribution provides PlugAuth
-style authentication (but noth authorization) using a simple Apache style password
+style authentication (but not authorization) using a simple Apache style password
 file.
 
 =head1 CONFIGURATION
@@ -99,6 +99,13 @@ Return 200 ok
 return 403 not ok
 
 =back
+
+=head1 METHODS
+
+=head2 register
+
+This method adds the routes to your application required to implement the PlugAuth
+API.
 
 =head1 LIMITATIONS
 
