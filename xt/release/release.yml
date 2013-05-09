@@ -13,6 +13,7 @@ pod_spelling_system:
     - ok
     - plugins
     - url
+    - Pluggable
 
 pod_coverage:
   private: []
