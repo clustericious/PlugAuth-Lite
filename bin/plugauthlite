@@ -70,7 +70,6 @@ use Mojolicious::Lite;
 
 my $validate_pw;
 
-$DB::single = 1;
 unless($ENV{PLUGAUTH_LITE_PLAIN})
 {
   eval q{
@@ -113,7 +112,7 @@ unless(defined $validate_pw)
   };
 }
 
-my $pwdb = do {
+my $pwdb = eval {
   use autodie;
   my %h;
   open my $fh, '<', ($ENV{PLUGAUTH_LITE_FILE} // 'passwd');
@@ -125,7 +124,12 @@ my $pwdb = do {
   }
   close $fh;
   \%h;
-};
+} // {};
+
+if(my $error = $@)
+{
+  app->log->error("unable to read password file $@");
+}
 
 plugin 'plug_auth_lite', auth => sub {
   my($user, $pass) = @_;

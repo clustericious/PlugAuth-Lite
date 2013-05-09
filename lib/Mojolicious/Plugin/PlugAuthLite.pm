@@ -176,7 +176,7 @@ sub register
     {
       $self->render(text => 'not ok', status => 403);
     }
-  });
+  })->name('plugauth_auth');
   
   $app->routes->get("$base_url/authz/user/#user/#action/(*resource)" => { resource => '/' } => sub {
     my $self = shift;
@@ -190,7 +190,7 @@ sub register
     {
       $self->render(text => 'not ok', status => 403);
     }
-  });
+  })->name('plugauth_authz');
   
   return;
 }
