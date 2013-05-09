@@ -37,7 +37,8 @@ details.
 
 L<plugauthlite>,
 L<Mojolicious::Plugin::PlugAuthLite>,
-L<Test::PlugAuth>
+L<Test::PlugAuth>,
+L<Clustericious>
 
 =head1 AUTHOR
 
