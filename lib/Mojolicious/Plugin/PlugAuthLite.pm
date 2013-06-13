@@ -199,7 +199,7 @@ sub register
     if ($cb_host->($host,$tag)) {
       return $self->render(text => 'ok', status => 200);
     }
-    return $self->render_message(text => 'not ok', status => 403);
+    return $self->render(text => 'not ok', status => 403);
   })->name('plugauth_host');
   
   return;
