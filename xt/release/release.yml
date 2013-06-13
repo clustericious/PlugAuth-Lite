@@ -14,7 +14,11 @@ pod_spelling_system:
     - plugins
     - url
     - Pluggable
+    - prerequsites
+    - plugauthlite
+    - conf
 
 pod_coverage:
-  private: []
+  private:
+    - PlugAuth::Lite#startup
 
