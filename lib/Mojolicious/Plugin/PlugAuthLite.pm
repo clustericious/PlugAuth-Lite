@@ -152,9 +152,9 @@ sub register
 {
   my($self, $app, $conf) = @_;
   
-  my $auth  = $conf->{auth}  // sub { 0 };
-  my $authz = $conf->{authz} // sub { 1 };
-  my $host  = $conf->{host}  // sub { 0 };
+  my $cb_auth  = $conf->{auth}  // sub { 0 };
+  my $cb_authz = $conf->{authz} // sub { 1 };
+  my $cb_host  = $conf->{host}  // sub { 0 };
   my $realm = $conf->{realm} // 'PlugAuthLite';
   my $base_url = $conf->{url} // $conf->{uri} // '';
 
@@ -169,7 +169,7 @@ sub register
     }
     my ($method,$str) = split / /,$auth_header;
     my ($user,$pw) = split /:/, b($str)->b64_decode;
-    if($auth->($user, $pw))
+    if($cb_auth->($user, $pw))
     {
       $self->render(text => 'ok', status => 200);
     }
@@ -183,7 +183,7 @@ sub register
     my $self = shift;
     my($user, $resource, $action) = map { $self->stash($_) } qw( user resource action );
     $resource =~ s{^/?}{/};
-    if($authz->($user, $action, $resource))
+    if($cb_authz->($user, $action, $resource))
     {
       $self->render(text => 'ok', status => 200);
     }
@@ -196,7 +196,7 @@ sub register
   $app->routes->get("$base_url/host/#host/:tag" => sub {
     my $self = shift;
     my ($host,$tag) = map $self->stash($_), qw/host tag/;
-    if ($host->($host,$tag)) {
+    if ($cb_host->($host,$tag)) {
       return $self->render(text => 'ok', status => 200);
     }
     return $self->render_message(text => 'not ok', status => 403);
