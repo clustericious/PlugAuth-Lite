@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - documentation
 
 0.03      2013-06-13 16:25:05 America/New_York
   - undocumented host routes (experimental)

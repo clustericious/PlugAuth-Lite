@@ -17,6 +17,7 @@ pod_spelling_system:
     - prerequsites
     - plugauthlite
     - conf
+    - MyApp
 
 pod_coverage:
   private:
