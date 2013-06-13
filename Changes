@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
   - undocumented host routes (experimental)
+  - if you die in a callback server catches it and returns 503
 
 0.02      2013-06-13 14:41:57 America/New_York
   - PlugAuth::Lite is now a Mojo app that uses PlugAuthLite plugin

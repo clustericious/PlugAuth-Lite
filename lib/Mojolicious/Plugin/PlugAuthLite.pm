@@ -160,46 +160,55 @@ sub register
 
   $app->routes->get("$base_url/auth" => sub {
     my $self = shift;
-    my $auth_header = $self->req->headers->authorization;
-    unless($auth_header)
-    {
-      $self->res->headers->www_authenticate('Basic "$realm"');
-      $self->render(text => 'please authenticate', status => 401);
-      return;
-    }
-    my ($method,$str) = split / /,$auth_header;
-    my ($user,$pw) = split /:/, b($str)->b64_decode;
-    if($cb_auth->($user, $pw))
-    {
-      $self->render(text => 'ok', status => 200);
-    }
-    else
-    {
-      $self->render(text => 'not ok', status => 403);
-    }
+    eval {
+      my $auth_header = $self->req->headers->authorization;
+      unless($auth_header)
+      {
+        $self->res->headers->www_authenticate('Basic "$realm"');
+        $self->render(text => 'please authenticate', status => 401);
+        return;
+      }
+      my ($method,$str) = split / /,$auth_header;
+      my ($user,$pw) = split /:/, b($str)->b64_decode;
+      if($cb_auth->($user, $pw))
+      {
+        $self->render(text => 'ok', status => 200);
+      }
+      else
+      {
+        $self->render(text => 'not ok', status => 403);
+      }
+    };
+    $self->render(text => 'not ok', status => 503) if $@;
   })->name('plugauth_auth');
   
   $app->routes->get("$base_url/authz/user/#user/#action/(*resource)" => { resource => '/' } => sub {
     my $self = shift;
-    my($user, $resource, $action) = map { $self->stash($_) } qw( user resource action );
-    $resource =~ s{^/?}{/};
-    if($cb_authz->($user, $action, $resource))
-    {
-      $self->render(text => 'ok', status => 200);
-    }
-    else
-    {
-      $self->render(text => 'not ok', status => 403);
-    }
+    eval {
+      my($user, $resource, $action) = map { $self->stash($_) } qw( user resource action );
+      $resource =~ s{^/?}{/};
+      if($cb_authz->($user, $action, $resource))
+      {
+        $self->render(text => 'ok', status => 200);
+      }
+      else
+      {
+        $self->render(text => 'not ok', status => 403);
+      }
+    };
+    $self->render(text => 'not ok', status => 503) if $@;
   })->name('plugauth_authz');
   
   $app->routes->get("$base_url/host/#host/:tag" => sub {
     my $self = shift;
-    my ($host,$tag) = map $self->stash($_), qw/host tag/;
-    if ($cb_host->($host,$tag)) {
-      return $self->render(text => 'ok', status => 200);
-    }
-    return $self->render(text => 'not ok', status => 403);
+    eval {
+      my ($host,$tag) = map $self->stash($_), qw/host tag/;
+      if ($cb_host->($host,$tag)) {
+        return $self->render(text => 'ok', status => 200);
+      }
+      return $self->render(text => 'not ok', status => 403);
+    };
+    $self->render(text => 'not ok', status => 503) if $@;
   })->name('plugauth_host');
   
   return;
