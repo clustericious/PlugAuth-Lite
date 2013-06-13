@@ -164,7 +164,7 @@ sub register
       my $auth_header = $self->req->headers->authorization;
       unless($auth_header)
       {
-        $self->res->headers->www_authenticate('Basic "$realm"');
+        $self->res->headers->www_authenticate("Basic \"$realm\"");
         $self->render(text => 'please authenticate', status => 401);
         return;
       }
