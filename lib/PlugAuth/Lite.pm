@@ -13,8 +13,9 @@ sub startup
   my($self, $config) = @_;
 
   $self->plugin('plug_auth_lite',
-    auth => $config->{auth} // sub { 0 },
-    authz => $config->{authz} // sub { 0 },
+    auth  => $config->{auth}  // sub { 0 },
+    authz => $config->{authz} // sub { 1 },
+    host  => $config->{host}  // sub { 0 },
   );
 }
 

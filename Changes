@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - undocumented host routes (experimental)
 
 0.02      2013-06-13 14:41:57 America/New_York
   - PlugAuth::Lite is now a Mojo app that uses PlugAuthLite plugin

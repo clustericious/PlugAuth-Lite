@@ -154,6 +154,7 @@ sub register
   
   my $auth  = $conf->{auth}  // sub { 0 };
   my $authz = $conf->{authz} // sub { 1 };
+  my $host  = $conf->{host}  // sub { 0 };
   my $realm = $conf->{realm} // 'PlugAuthLite';
   my $base_url = $conf->{url} // $conf->{uri} // '';
 
@@ -191,6 +192,15 @@ sub register
       $self->render(text => 'not ok', status => 403);
     }
   })->name('plugauth_authz');
+  
+  $app->routes->get("$base_url/host/#host/:tag" => sub {
+    my $self = shift;
+    my ($host,$tag) = map $self->stash($_), qw/host tag/;
+    if ($host->($host,$tag)) {
+      return $self->render(text => 'ok', status => 200);
+    }
+    return $self->render_message(text => 'not ok', status => 403);
+  })->name('plugauth_host');
   
   return;
 }
