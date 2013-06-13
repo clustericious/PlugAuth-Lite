@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.02      2013-06-13 14:41:57 America/New_York
   - PlugAuth::Lite is now a Mojo app that uses PlugAuthLite plugin
 
 0.01      2013-05-09 16:47:47 EST5EDT
