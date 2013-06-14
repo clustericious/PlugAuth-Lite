@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Create an interface in Test::PlugAuth
 
 0.04      2013-06-13 16:53:50 America/New_York
   - documentation
