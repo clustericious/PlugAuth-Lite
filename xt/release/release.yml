@@ -18,6 +18,7 @@ pod_spelling_system:
     - plugauthlite
     - conf
     - MyApp
+    - ua
 
 pod_coverage:
   private:
