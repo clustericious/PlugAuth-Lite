@@ -1,2 +1,5 @@
+EV
 ExtUtils::MakeMaker
 Mojolicious
+Test::More
+autodie

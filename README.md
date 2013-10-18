@@ -1,4 +1,4 @@
-# PlugAuth::Lite
+# PlugAuth::Lite [![Build Status](https://secure.travis-ci.org/plicease/PlugAuth-Lite.png)](http://travis-ci.org/plicease/PlugAuth-Lite)
 
 Pluggable (lite) authentication and authorization server.
 
