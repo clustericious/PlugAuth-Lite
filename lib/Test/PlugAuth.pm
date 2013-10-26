@@ -58,9 +58,9 @@ sub new
   
   $self->{app} = PlugAuth::Lite->new($config);
   $self->{ua}  = Mojo::UserAgent->new;
-  $self->ua->app($self->app);
+  eval { $self->ua->server->app($self->app) } // $self->ua->app($self->app);
   
-  $self->{url} = $self->ua->app_url->to_string;
+  $self->{url} = eval { $self->ua->server->url->to_string } // $self->ua->app_url->to_string;
   $self->{url} =~ s{/$}{};
   
   return $self;
