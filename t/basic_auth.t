@@ -22,7 +22,7 @@ my $t = Test::Mojo->new;
 $t->get_ok('/')
   ->status_is(404);
 
-my $port = $t->ua->app_url->port;
+my $port = eval { $t->ua->server->url->port } // $t->ua->app_url->port;
 
 $t->get_ok("http://localhost:$port/auth")
   ->status_is(401)

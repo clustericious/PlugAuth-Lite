@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Mojolicious 4.50 compatability
 
 0.05      2013-06-14 12:31:28 EST5EDT
   - Create an interface in Test::PlugAuth

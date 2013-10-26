@@ -8,9 +8,25 @@ use Mojo::Base qw( Mojolicious );
 # ABSTRACT: Pluggable (lite) authentication and authorization server.
 # VERSION
 
+our $_config;
+
+if(Mojolicious->VERSION >= 4.50)
+{
+  eval q{
+    sub new {
+      my $self = shift;
+      local $_config = $_[0];
+      $self->SUPER::new(@_);
+    }
+  };
+  die $@ if $@;
+}
+
 sub startup
 {
   my($self, $config) = @_;
+
+  $config //= $_config;
 
   $self->plugin('plug_auth_lite',
     auth  => $config->{auth}  // sub { 0 },
