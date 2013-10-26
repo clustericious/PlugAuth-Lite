@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.06      2013-10-26 08:05:30 -0400
   - Mojolicious 4.50 compatability
 
 0.05      2013-06-14 12:31:28 EST5EDT
