@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - added test for Test::PlugAuth
 
 0.06      2013-10-26 08:05:30 -0400
   - Mojolicious 4.50 compatability

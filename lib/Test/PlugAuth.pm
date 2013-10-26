@@ -23,7 +23,7 @@ directives that you need to test:
    return $user eq 'gooduser' && $pass eq 'goodpass';
  });
  
- create_config_ok 'MyApp', { plug_auth => $auth->url };
+ create_config_ok 'MyApp', { plug_auth => { url => $auth->url } };
  
  $t = Test::Clustericious->new('MyApp');
  $auth->apply_to_client_app($t->app);
