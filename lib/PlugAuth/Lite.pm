@@ -8,21 +8,6 @@ use Mojo::Base qw( Mojolicious );
 # ABSTRACT: Pluggable (lite) authentication and authorization server.
 # VERSION
 
-has 'auth';
-has 'authz';
-has 'host';
-
-sub startup
-{
-  my($self, $config) = @_;
-
-  $self->plugin('plug_auth_lite',
-    auth  => $self->auth  // sub { 0 },
-    authz => $self->authz // sub { 1 },
-    host  => $self->host  // sub { 0 },
-  );
-}
-
 =head1 SYNOPSIS
 
 command line:
@@ -98,6 +83,45 @@ It has fewer prerequisites that the full fledged L<PlugAuth> server (simply
 L<Mojolicious> and perl itself) but also fewer features (it notably lacks
 the management interface).
 
+=head1 ATTRIBUTES
+
+=head2 auth
+
+Subroutine reference to call to check authentication.  Passes in C<($user, $pass)> should
+return true for authenticated, false otherwise.
+
+If not provided, all authentications fail.
+
+=head2 authz
+
+Subroutine reference to call to check authorization.  Passes in C<($user, $action, $resource)>
+and should return true for authorized, false otherwise.
+
+If not provided, all authorizations succeed.
+
+=head2 host
+
+Subroutine reference to call to check host information.
+
+=cut
+
+has 'auth';
+has 'authz';
+has 'host';
+
+sub startup
+{
+  my($self, $config) = @_;
+
+  $self->plugin('plug_auth_lite',
+    auth  => $self->auth  // sub { 0 },
+    authz => $self->authz // sub { 1 },
+    host  => $self->host  // sub { 0 },
+  );
+}
+
+1;
+
 =head1 SEE ALSO
 
 L<plugauthlite>,
@@ -107,4 +131,3 @@ L<Clustericious>
 
 =cut
 
-1;

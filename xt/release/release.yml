@@ -19,6 +19,7 @@ pod_spelling_system:
     - conf
     - MyApp
     - ua
+    - customizable
 
 pod_coverage:
   private:

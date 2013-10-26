@@ -73,6 +73,26 @@ It has fewer prerequisites that the full fledged [PlugAuth](http://search.cpan.o
 [Mojolicious](http://search.cpan.org/perldoc?Mojolicious) and perl itself) but also fewer features (it notably lacks
 the management interface).
 
+# ATTRIBUTES
+
+## auth
+
+Subroutine reference to call to check authentication.  Passes in `($user, $pass)` should
+return true for authenticated, false otherwise.
+
+If not provided, all authentications fail.
+
+## authz
+
+Subroutine reference to call to check authorization.  Passes in `($user, $action, $resource)`
+and should return true for authorized, false otherwise.
+
+If not provided, all authorizations succeed.
+
+## host
+
+Subroutine reference to call to check host information.
+
 # SEE ALSO
 
 [plugauthlite](http://search.cpan.org/perldoc?plugauthlite),
