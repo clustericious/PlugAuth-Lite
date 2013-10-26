@@ -1,7 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.07      2013-10-26 08:39:39 -0400
   - added test for Test::PlugAuth
+  - Mojo 4.50 deprecation compatability
 
 0.06      2013-10-26 08:05:30 -0400
   - Mojolicious 4.50 compatability
