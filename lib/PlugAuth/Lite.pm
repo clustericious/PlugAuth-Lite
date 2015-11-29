@@ -8,6 +8,12 @@ use Mojo::Base qw( Mojolicious );
 # ABSTRACT: Pluggable (lite) authentication and authorization server.
 # VERSION
 
+=head1 MOVED
+
+This is the old version of L<PlugAuth::Lite> from before it was merged
+into core L<Test::Clustericious::Cluster>.  Please see the L<Test::Clustericious::Cluster> main repository
+here: L<https://github.com/clustericious/Test-Clustericious-Cluster>.
+
 =head1 SYNOPSIS
 
 command line:
