@@ -4,7 +4,7 @@ This is the old version of [PlugAuth::Lite](https://metacpan.org/pod/PlugAuth::L
 into core [Test::Clustericious::Cluster](https://metacpan.org/pod/Test::Clustericious::Cluster).  Please see the [Test::Clustericious::Cluster](https://metacpan.org/pod/Test::Clustericious::Cluster) main repository
 here: [https://github.com/clustericious/Test-Clustericious-Cluster](https://github.com/clustericious/Test-Clustericious-Cluster).
 
-# PlugAuth::Lite [![Build Status](https://secure.travis-ci.org/plicease/PlugAuth-Lite.png)](http://travis-ci.org/plicease/PlugAuth-Lite)
+# PlugAuth::Lite
 
 Pluggable (lite) authentication and authorization server.
 
